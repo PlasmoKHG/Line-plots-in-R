@@ -1,0 +1,119 @@
+#load the R packages
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+#read the csv file containing your data
+df <- read.csv("C:/Users/hawa9949/Documents/AMA_TajimaD.csv") 
+head(df)
+#define the x and y axis variables
+df_1=ggplot(df, aes(x = Nucleotide.Distance, y = D, group=1))+
+  #change the line colour
+  geom_line(color = "Blue", linewidth = 0.8) +
+  #set the plot scale
+  xlim(0,2000)+
+  ylim(-2.1,2.1)+
+  #set the plot title
+  ggtitle("pfama1")+
+  #set the x and y axis labels
+  xlab("Nucleotide Position")+
+  ylab("D")+
+  #define the theme of the plot
+  theme_classic()+
+  #set the thickness of the x and y axis
+  theme(axis.line = element_line(size = 1))+
+  #modify the plot and axis titles
+  theme(axis.title = element_text(size = 10, face = "bold"))+
+  theme(plot.title = element_text(hjust =0.5, face = "bold.italic", size = 10))
+####################
+ds <- read.csv("C:/Users/hawa9949/Documents/ADSL_TajimaD.csv") 
+head(ds)
+ds_1=ggplot(ds, aes(x = Nucleotide.Distance, y = D, group=1)) +
+  geom_line(color = "Blue", size = 0.8) + 
+  #set the plot scale
+  xlim(0,1400)+
+  ylim(-2.1,2.1)+
+  #Set the legend
+  #set the plot title
+  ggtitle("pfadsl")+
+  xlab("Nucleotide Position")+
+  ylab("D")+
+  theme_classic()+
+  theme(axis.line = element_line(size = 1))+
+  theme(axis.title = element_text(size = 10, face = "bold"))+
+  theme(plot.title = element_text(hjust =0.5, face = "bold.italic", size = 10))
+################################################################
+dx <- read.csv("C:/Users/hawa9949/Documents/Rh5_tajima.csv") 
+head(df)
+dx_1=ggplot(dx, aes(x = Nucleotide.Distance, y = D, group=1)) +
+  geom_line(color = "Blue", size = 0.8) + 
+  #set the plot scale
+  xlim(0,1700)+
+  ylim(-2.1,2.1)+
+  #Set the legend
+  #set the plot title
+  ggtitle("pfrh5")+
+  xlab("Nucleotide Position")+
+  ylab("D")+
+  theme_classic()+
+  theme(axis.line = element_line(size = 1))+
+  theme(axis.title = element_text(size = 10, face = "bold"))+
+  theme(plot.title = element_text(hjust =0.5, face = "bold.italic", size = 10))+
+  geom_rect(aes(xmin=200,xmax=362,ymin=2,ymax=-2),data=df,fill="#D63300",alpha=0.009)
+##############################################################################
+dp <- read.csv("C:/Users/hawa9949/Documents/Ripr_tajima.csv") 
+head(dp)
+dp_1=ggplot(dp, aes(x = Nucleotide.Distance, y = D, group=1)) +
+  geom_line(color = "Blue", size = 0.8) + 
+  #set the plot scale
+  xlim(0,3600)+
+  ylim(-2.1,2.1)+
+  #Set the legend
+  #set the plot title
+  ggtitle("pfripr")+
+  xlab("Nucleotide Position")+
+  ylab("D")+
+  theme_classic()+
+  theme(axis.line = element_line(size = 1))+
+  theme(axis.title = element_text(size = 10, face = "bold"))+
+  theme(plot.title = element_text(hjust =0.5, face = "bold.italic", size = 10))+
+  geom_rect(aes(xmin=196,xmax=211,ymin=2,ymax=-2),data=df,fill="#D63300",alpha=0.009)
+
+#############################################################################
+dy <- read.csv("C:/Users/hawa9949/Documents/cyrpa_tajima.csv") 
+head(dy)
+dy_1=ggplot(dy, aes(x = Nucleotide.Distance, y = D, group=1)) +
+  geom_line(color = "Blue", size = 0.8) + 
+  #set the plot scale
+  xlim(0,1100)+
+  ylim(-2.1,2.1)+
+  #Set the legend
+  #set the plot title
+  ggtitle("pfcyrpa")+
+  xlab("Nucleotide Position")+
+  ylab("D")+
+  theme_classic()+
+  theme(axis.line = element_line(size = 1))+
+  theme(axis.title = element_text(size = 10, face = "bold"))+
+  theme(plot.title = element_text(hjust =0.5, face = "bold.italic", size = 10))+
+  geom_rect(aes(xmin=281,xmax=311,ymin=2,ymax=-2),data=df,fill="#D63300",alpha=0.009)
+############################################################################
+dq <- read.csv("C:/Users/hawa9949/Documents/p113_tajima.csv") 
+head(dq)
+dq_1=ggplot(dq, aes(x = Nucleotide.Distance, y = D, group=1)) +
+  geom_line(color = "Blue", size = 0.8) + 
+  #set the plot scale
+  xlim(0,3000)+
+  ylim(-2.1,2.1)+
+  #Set the legend
+  #set the plot title
+  ggtitle("pfp113")+
+  xlab("Nucleotide Position")+
+  ylab("D")+
+  theme_classic()+
+  theme(axis.line = element_line(size = 1))+
+  theme(axis.title = element_text(size = 10, face = "bold"))+
+  theme(plot.title = element_text(hjust =0.5, face = "bold.italic", size = 10))+
+  geom_rect(aes(xmin=1,xmax=197,ymin=2,ymax=-2),data=df,fill="#D63300",alpha=0.009)
+library(cowplot)
+plot_grid(df_1, dp_1,dx_1, ds_1, dy_1, dq_1, labels = c("A", "B", "C", "D", "E", 
+                                                        "F"), label_size = 12)
